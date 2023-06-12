@@ -30,8 +30,9 @@ Assumption behind TLOSS
 <img align="middle" src="https://github.com/Kaimaoge/STmodels_notes/raw/main/Reproduce%20TLOSS/image/tloss.png" width="500" />
 </p>
 
-The above figure shows how Tloss choose $x_{ref}$ (target time series), $x_{pos}$ (positive time series) and $x_{neg}$ (negative time series). 
+The figure above illustrates how Tloss selects the target time series, represented by $x_{ref}$ and marked in green, along with the positive time series $x_{pos}$ marked in cyan, and the negative time series $x_{neg}$. marked in red. The motivation behind this configuration draws inspiration from the field of Natural Language Processing (NLP). It is based on the notion that the representation of a word's context should exhibit proximity to the word itself, yet distance from randomly chosen words. In this analogy, $x_{pos}$ can be considered as a word, and $x_{ref}$ as the corresponding context (a sentence, perhaps), and $x_{neg}$ as another word originating from a different context.
 
+I believe this assumption is not entirely reasonable as different time series can have very similar contexts. For example, in spatiotemporal data, the time series of certain adjacent spatial points can exhibit similarities in their contexts. However, Tloss still makes a significant contribution by introducing the concept of positive and negative samples, akin to contrastive learning, to address the problem of unsupervised learning in time series analysis.
 
 <br>
 
