@@ -30,7 +30,7 @@ Assumption behind TLOSS
 <img align="middle" src="https://github.com/Kaimaoge/STmodels_notes/raw/main/Reproduce%20TLOSS/image/tloss.png" width="500" />
 </p>
 
-The above figure shows how Tloss choose \(x_{ref}\) (target time series), \(x_{pos}\) (positive time series) and \(x_{neg}\) (negative time series). 
+The above figure shows how Tloss choose $x_{ref}$ (target time series), $x_{pos}$ (positive time series) and $x_{neg}$ (negative time series). 
 
 
 <br>
