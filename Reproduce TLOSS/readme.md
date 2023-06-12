@@ -27,7 +27,7 @@ Assumption behind TLOSS
 **The representation of a time series within a time window should be similar to that of any of its subseries. Conversely, its representation should be dissimilar to that of another randomly selected time series.**
 
 <p align="center">
-<img align="middle" src="https://github.com/Kaimaoge/STmodels_notes/raw/main/Reproduce%20TLOSS/image/tloss.png" width="800" />
+<img align="middle" src="https://github.com/Kaimaoge/STmodels_notes/raw/main/Reproduce%20TLOSS/image/tloss.png" width="500" />
 </p>
 
 <br>
