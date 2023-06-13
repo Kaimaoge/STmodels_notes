@@ -54,10 +54,34 @@ My implentation
 
 Following Tloss, Eldele et al. proposed an unsupervised learning model named TS-TCC in IJCAI 2021. However, they did not evaluate their model on the same datasets. I am curious about the performance of Tloss on the datasets evaluated in the TS-TCC paper. Therefore, I reproduced a Tloss model based on the open-source code provided by the authors in their [TS-TCC repository](https://github.com/emadeldeen24/TS-TCC).
 
-Datasets
---------------
+### Datasets
 
 Fortunately, the authors of TS-TCC have provided their preprocessed datasets, which include sleep-EDF, HAR, and Epilepsy. You can now access the preprocessed datasets on the [Dataverse](https://researchdata.ntu.edu.sg/dataverse/tstcc/) associated with TS-TCC.
+
+### Minor changes to the original paper
+
+In the original paper, once Tloss is trained to obtain the representations, the parameters remain unchanged. The generated features are then used as inputs to downstream SVM classifiers. On the other hand, TS-TCC employs a pre-training then fine-tuning strategy, where the model's parameters are further fine-tuned on downstream tasks after pretraining. In this project, we adopt the finetuning approach of TS-TCC to train Tloss. We do not use an SVM classifier, but instead directly employ an MLP classifier at the top of the Tloss model. See models.causal_cnn.py
+
+```python
+class CausalCNNEncoder(torch.nn.Module):
+    def __init__(self, configs):
+        super(CausalCNNEncoder, self).__init__()
+        causal_cnn = CausalCNN(
+            configs.in_channels, configs.channels, configs.depth, configs.reduced_size, configs.kernel_size
+        )
+        reduce_size = torch.nn.AdaptiveMaxPool1d(1)
+        squeeze = SqueezeChannels()  # Squeezes the third dimension (time)
+        linear = torch.nn.Linear(configs.reduced_size, configs.out_channels)
+        self.network = torch.nn.Sequential(
+            causal_cnn, reduce_size, squeeze, linear
+        )
+        self.logits = torch.nn.Linear(configs.out_channels, configs.num_classes)
+
+    def forward(self, x):
+        x = self.network(x)
+        logits = self.logits(x)
+        return x, logits
+```
 
 <br>
 
