@@ -43,6 +43,10 @@ To enable a system to learn the prior knowledge embedded in the assumption, it i
 
 $$ - log \left( \sigma \left(f(x_{ref}; \theta)^T f(x_{pos}; \theta)  \right) \right) - \sum^K_{k=1} log \left( \sigma \left(-f(x_{ref}; \theta)^T f(x_{neg, k}; \theta)\right) \right)  $$
 
+where $\sigma$ is the sigmoid function. This loss pushes the computed representations to distinguish between $x_{\text{ref}}$ and $x_{\text{neg}}$, and to assimilate $x_{\text{ref}}$ and $x_{\text{pos}}$. $x_{\text{ref}}$, $x_{\text{pos}}$ and $x_{\text{neg}}$ are sampled randomly from the training dataset.
+
+The learning structure of Tloss is not particularly special. It consists of a causal convolutional network, but it needs to map time series of different lengths to the same length for comparison. The output of this causal network is then given to a global max pooling layer squeezing the temporal dimension and aggregating all temporal information in a fixed-size vector.
+
 
 <br>
 
