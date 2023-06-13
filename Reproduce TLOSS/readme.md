@@ -96,6 +96,29 @@ samples = np.concatenate(
 
 <br>
 
+Results
+--------------
+
+| Notebook  | HAR              | Sleep-EDF        | Epilepsy         |
+|-----------|------------------|------------------|------------------|
+| Baseline  | ACC    | MF1     | ACC    | MF1     | ACC    | MF1     |
+| TS-TCC    | 90.37±0.34 | 90.38±0.39 | 83.00±0.71 | 73.57±0.74 | 97.23±0.10 | 95.54±0.08 |
+| Tloss     | 87.89 | 88.03 | 84.05 | 75.60 | 97.65 | 95.66 |
+
+From the results, it can be seen that Tloss is not worse than TS-TCC. However, more experiments are needed for a detailed comparison.
+
+<br>
+
+To be continued
+--------------
+
+  - Implementation of other unsupervised time series learning models
+  - Experiments on settings more suitable for unsupervised learning (limited label, transfer learning, etc)
+  - .......
+
+
+<br>
+
 References
 --------------
 Franceschi, Jean-Yves, Aymeric Dieuleveut, and Martin Jaggi. "Unsupervised scalable representation learning for multivariate time series." Neurips 2019.
