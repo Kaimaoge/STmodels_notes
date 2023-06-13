@@ -83,6 +83,17 @@ class CausalCNNEncoder(torch.nn.Module):
         return x, logits
 ```
 
+In the original Tloss open-source code, negative sample sampling was performed across all training samples. Due to the large sample size, the probability of sampling $x_{ref}$ itself is relatively small. Therefore, the authors did not impose restrictions to avoid sampling the time series containing $x_{ref}$. In this project, negative sample sampling is performed within each training batch. We have imposed certain constraints on the sampling process to avoid sampling the time series containing $x_{ref}$. See dataloader.augmentations.py
+
+```python
+samples = np.concatenate(
+        [np.random.choice(
+            np.delete(np.arange(batch_size), j),
+            size=(configs.nb_random_samples, 1)
+        ) for j in range(batch_size)], axis = 1
+    )                 # It can perfectly avoid self selection
+```
+
 <br>
 
 References
