@@ -36,6 +36,16 @@ I believe this assumption is not entirely reasonable as different time series ca
 
 <br>
 
+Learn the assumption
+--------------
+
+To enable a system to learn the prior knowledge embedded in the assumption, it is necessary to design a loss function and determine the sampling method for the input samples of the loss function. The loss function for Tloss is defined as follows:
+
+$$ - log \left( \sigma \left(f(x_{ref}; \theta)^T f(x_{pos}; \theta)  \right) \right) - \sum^K_{k=1} log \left( \sigma \left(-f(x_{ref}; \theta)^T f(x_{neg, k}; \theta)  $$
+
+
+<br>
+
 References
 --------------
 Franceschi, Jean-Yves, Aymeric Dieuleveut, and Martin Jaggi. "Unsupervised scalable representation learning for multivariate time series." Neurips 2019.
