@@ -45,8 +45,19 @@ $$ - log \left( \sigma \left(f(x_{ref}; \theta)^T f(x_{pos}; \theta)  \right) \r
 
 where $\sigma$ is the sigmoid function. This loss pushes the computed representations to distinguish between $x_{\text{ref}}$ and $x_{\text{neg}}$, and to assimilate $x_{\text{ref}}$ and $x_{\text{pos}}$. $x_{\text{ref}}$, $x_{\text{pos}}$ and $x_{\text{neg}}$ are sampled randomly from the training dataset.
 
-The learning structure of Tloss is not particularly special. It consists of a causal convolutional network, but it needs to map time series of different lengths to the same length for comparison. The output of this causal network is then given to a global max pooling layer squeezing the temporal dimension and aggregating all temporal information in a fixed-size vector.
+The learning structure of Tloss is not particularly special. It consists of a causal convolutional network, but it needs to map time series of different lengths to the same length for computing the loss function. The output of this causal network is then **given to a global max pooling layer squeezing the temporal dimension and aggregating all temporal information in a fixed-size vector**.
 
+<br>
+
+My implentation
+--------------
+
+Following Tloss, Eldele et al. proposed an unsupervised learning model named TS-TCC in IJCAI 2021. However, they did not evaluate their model on the same datasets. I am curious about the performance of Tloss on the datasets evaluated in the TS-TCC paper. Therefore, I reproduced a Tloss model based on the open-source code provided by the authors in their [TS-TCC repository](https://github.com/emadeldeen24/TS-TCC).
+
+Datasets
+--------------
+
+Fortunately, the authors of TS-TCC have provided their preprocessed datasets, which include sleep-EDF, HAR, and Epilepsy. You can now access the preprocessed datasets on the [Dataverse](https://researchdata.ntu.edu.sg/dataverse/tstcc/) associated with TS-TCC.
 
 <br>
 
